@@ -1,0 +1,17 @@
+services:
+  wait2-server:
+    container_name: test-wait2
+    depends_on:
+    - wait1-server
+    image: xiaoxinmiao/wait2
+    environment:
+      WAIT_HOSTS: test-wait1:8080
+      WAIT_HOSTS_TIMEOUT: 60
+    ports:
+    - 8082:8080
+  wait1-server:
+    container_name: test-wait1
+    image: xiaoxinmiao/wait1
+    ports:
+    - 8081:8080
+version: "3"
